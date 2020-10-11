@@ -1,4 +1,4 @@
-import * as LineReader from 'line-reader';
+//import * as LineReader from 'line-reader';
 
 import { Entity } from ".";
 import { DxfDocument, DxfWriter } from "..";
@@ -61,7 +61,7 @@ export class HatchPattern implements DxfObject {
 
     constructor(public name: string, public lines: HatchPatterLine[]) { }
 
-    static readFileAsync(path: string): Promise<HatchPattern[]> {
+    /*static readFileAsync(path: string): Promise<HatchPattern[]> {
         return new Promise((resolve, reject) => {
             LineReader.open(path, (err, reader) => {
                 if (err) reject(err);
@@ -102,7 +102,7 @@ export class HatchPattern implements DxfObject {
                 resolve(result);
             });
         });
-    }
+    }*/
 
     writeDxf(writer: DxfWriter): void {
         writer.writeGroup(78, this.lines.length);
