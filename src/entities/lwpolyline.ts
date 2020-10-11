@@ -2,7 +2,7 @@ import { Entity } from ".";
 import { DxfWriter, DxfDocument } from "..";
 
 export class LwPolyline extends Entity {
-    constructor(doc: DxfDocument, public points: [number, number][], public isClosed: boolean, ownerHandle?: string) {
+    constructor(doc: DxfDocument, public points: ([number, number]|[number, number, number])[], public isClosed: boolean, ownerHandle?: string) {
         super('LWPOLYLINE', doc.nextHandle(), ownerHandle); 
     }
 
@@ -13,6 +13,7 @@ export class LwPolyline extends Entity {
         this.points.forEach(p => {
             writer.writeGroup(10, p[0]);
             writer.writeGroup(20, p[1]);
+            if (p[2]) writer.writeGroup(42, p[2]);
         });
     }
 }
